@@ -1,0 +1,58 @@
+body {
+    background-color: #000352;
+}
+
+.header {
+    font-weight: 900;
+    background-color: #000130;
+    padding: 50px;
+    color: #8e9198;
+}
+
+.row {
+    margin: 0 20px 10px 20px;
+}
+
+.success {
+    background-color: green;
+}
+.total-fail {
+    background-color: red!important;
+}
+
+.question {
+    color: #8e9198;
+    /*padding-top: 10px;*/
+    height: 100px;
+    /*border-radius: 50px;*/
+    text-align: center;
+    padding: 10px;
+}
+
+.question-inside {
+    background-color: #000130;
+    height:100%;
+    padding: 10px;
+    border: solid 1px #5b6065;
+}
+
+.question.correct {
+    background-color: #00ff00!important;
+}
+.question.wrong {
+    background-color: red!important;
+}
+
+.sendAnswers {
+
+}
+
+/*.question.question-0 {*/
+    /*!*background-color: #0d98ba;*!*/
+/*}*/
+/*.question.question-1 {*/
+    /*!*background-color: green;*!*/
+/*}*/
+/*.question.question-2 {*/
+    /*!*background-color: #1AAAAA;*!*/
+/*}*/
