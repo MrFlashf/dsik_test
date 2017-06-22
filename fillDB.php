@@ -117,7 +117,7 @@ function fillQuestionsTable() {
         questionQuery(15, "Czy możliwe jest przekazywanie stacji pomiędzy ESS’ami?"         , 0),
         questionQuery(15, "Czy stosowany jest algorytm CSMA/CA?"                            , 1),
         questionQuery(16, "Czy będzie skuteczny bez tzw. drogi domyślnej „default”?"        , 0),
-        questionQuery(16, "Czy rutery brzegowe wyk. met. dyst. –wektorową?"                 , 1),
+        questionQuery(16, "Czy rutery brzegowe wyk. met. dyst. –wektorową (xd)?"            , 1),
         questionQuery(16, "Czy pojecie \"Split horizon\" dotyczy prot. RIP?"                , 1),
         questionQuery(16, "Czy ruter zmienia adresy źródłowe na docelowe?"                  , 0),
         questionQuery(16, "Czy ruter zmienia adresy źródłowe lub docelowe?"                 , 1),
@@ -130,9 +130,9 @@ function fillQuestionsTable() {
         questionQuery(17, "Czy algorytm Jacobsona służy ocenie RTT?"                        , 0),
         questionQuery(17, "Czy protokół http wykorzystuje TCP?"                             , 1),
         questionQuery(17, "Czy ednostka przesyłania TCP to segment?"                        , 1),
-        questionQuery(17, "Czy przesuwne okno jest wspólne dla obydwu kanałów TCP?"         , 1),
+        questionQuery(17, "Czy przesuwne okno jest wspólne dla obydwu kanałów TCP?"         , 0),
         questionQuery(18, "Czy występują negatywne potwierdzenia?"                          , 1),
-        questionQuery(18, "Czy przesuwne okno jest wspólne dla obydwu kanałów?"             , 1),
+        questionQuery(18, "Czy przesuwne okno jest wspólne dla obydwu kanałów?"             , 0),
         questionQuery(18, "Czy wysłanie pakietu uruchamia \"timer\"?"                       , 1),
         questionQuery(18, "Czy TCP tworzy kanał FDx?"                                       , 1),
         questionQuery(18, "Czy wysłanie pakietu jest związane z licznikiem czasu?"          , 1),
@@ -211,6 +211,8 @@ function fillExplanationsTable() {
     global $db_host,$db_user,$db_name,$db_pass;
 
     $queries = [
+        /**10*/explanationQuery(10,
+            "Odbierać może, tylko wysyłać nie"),
         /**16*/explanationQuery(16,
             "Jeśli dobrze rozumiem, to mosty łączą ze sobą domeny kolizyjne w obrębie domeny rozgłoszeniowej. Są granicami sieci kolizyjnych"),
         /**17*/explanationQuery(17,
@@ -239,16 +241,24 @@ function fillExplanationsTable() {
                 </ul>"),
         /**42*/explanationQuery(42,
             "/28 oznacza maskę na 28 bitach"),
+        /**44*/explanationQuery(44,
+            "IPv4 zawiera pole opcji, ale nie jest ono wymagane"),
         /**46*/explanationQuery(46,
             "Jeżeli przez interfejs sieciowy rozumiemy kartę sieciową, no to jak najbardziej, jeszcze jak."),
+        /**50*/explanationQuery(50,
+            "CIDR to metoda przyszialania adresów IP, a RIP służy do obliczania najlepszej trasy do celu podczas routingu"),
         /**52*/explanationQuery(52,
             "Wydaje mi się, że tylko logicznie"),
         /**57*/explanationQuery(57,
             "RS232 to po prostu rodzaj złącze, a warstwa pierwsza to warstwa fizyczna"),
+        /**58*/explanationQuery(58,
+            "RIP2 chyba wykorzystuje"),
         /**59*/explanationQuery(59,
             "Ping może nie zwrócić nic jeżeli admini danej domeny tak se ustawili, co nie znaczy, że serwer nie działa"),
         /**65*/explanationQuery(65,
             "AP (Access Point) urządzenie zapewniające hostom dostęp do sieci komputerowej za pomocą bezprzewodowego nośnika transmisyjnego. Punkt dostępowy jest zazwyczaj mostem łączącym bezprzewodową sieć lokalną (WLAN) z siecią lokalną (LAN)."),
+        /**67*/explanationQuery(67,
+            "CSMA/CD działa w oparciu o wykrycie kolizji czy jakoś tak, a w WLAN kolizje są niewykrywalne. Używa się CSMA/CA"),
         /**69*/explanationQuery(69,
             "Mogę pomiędzy BBSami, ale muszą być w jednym ESS"),
         /**70*/explanationQuery(70,
@@ -265,18 +275,30 @@ function fillExplanationsTable() {
             "Netstat to wszystko pokazuje chyba"),
         /**94*/explanationQuery(94,
             "Tracert (Traceroute) wykorzystuje protokoły ICMP oraz UDP"),
+        /**96*/explanationQuery(96,
+            "bod oznacza liczbę zmian sygnału na sekundę, przy czym jedna zmiana sygnału może nieść ze sobą info o 4 bitach"),
         /**99*/explanationQuery(99,
             "Ethernet to 802.3, Ethernet II chyba też"),
+        /**104*/explanationQuery(104,
+            "AUI to jest rodzaj złącza, jakieś brzydkie duże, a RJ45 to \"klasyczny\" dzisiaj kabel od neta"),
+        /**105*/explanationQuery(105,
+            "Przełącznik LAN (switch) okraśla się jako wieloportowy most"),
         /**106*/explanationQuery(106,
             "Binary Exponential Backoff – algorytm wykorzystywany przez metodę CSMA/CD w sieci Ethernet."),
         /**107*/explanationQuery(107,
-            "CSMA/CD to system wykrywania kolizji, działa w każdym trybie, poza full-duplex"),
+            "CSMA/CD to system wykrywania kolizji, działa w każdym trybie, poza full-duplex, bo w full duplex nie może być kolizji"),
         /**114*/explanationQuery(114,
             "Są jeszcze sieci personalne"),
         /**116*/explanationQuery(116,
             "Szczelina to jakaś tam umowna wartość czasowa"),
+        /**118*/explanationQuery(118,
+            "10000BASE F to 10Gigabit Ethernet i on leci po full-duplexie, a co za tym idzie nie ma wsparcia dla CSMA/CD, bo, jeśli dobrze kumam, CSMA/CD to system wykrywania kolizji, a w full duplexie ich nie ma"),
         /**119*/explanationQuery(119,
             "IEEE 802.1Q is the networking standard that supports virtual LANs (VLANs) on an Ethernet network."),
+        /**120*/explanationQuery(120,
+            "Wg jakiegoś typka ze Stack Overflow można używać AF_INET zamiast PF_INET zawsze"),
+        /**123*/explanationQuery(123,
+            "W pingu nie ma skrzynek"),
         /**126*/explanationQuery(126,
             "Obejmuje warstwy 1-3"),
         /**127*/explanationQuery(127,
@@ -294,6 +316,8 @@ function fillExplanationsTable() {
             </ul>"),
         /**128*/explanationQuery(128,
             "bod oznacza liczbę zmian sygnału na sekundę, przy czym jedna zmiana sygnału może nieść ze sobą info o 4 bitach"),
+        /**130*/explanationQuery(130,
+            "USA & Japan"),
         /**132*/explanationQuery(132,
             "ATM to standard komunikacji, przesyłający pakiety przez wirtualne łącza, a VP to wietualna ścieżka"),
         /**134*/explanationQuery(134,
@@ -306,16 +330,16 @@ function fillExplanationsTable() {
             "AP zazwyczaj jest mostem łączącym WLAN z LANem"),
     ];
 
-
     try {
         $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
         if ($conn->connect_errno)
             throw new Exception(mysqli_connect_error());
         $conn->set_charset('utf8');
         foreach ($queries as $query) {
-            echo "query".$query;
-            if (!$conn->query($query))
+            if (!$conn->query($query)) {
+                echo $query;
                 throw new Exception("Bład przy explanations");
+            }
         }
         $conn->close();
     } catch(Exception $e) {

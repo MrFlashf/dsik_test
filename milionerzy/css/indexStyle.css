@@ -1,0 +1,16 @@
+body {
+    background-color: #000352;
+    color: #8e9198;
+}
+
+.container {
+    padding-top: 300px;
+}
+
+.rules {
+    margin-top: 50px;
+}
+
+.rules p {
+    font-size: 20px;
+}
